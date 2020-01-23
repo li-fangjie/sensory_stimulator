@@ -1,10 +1,12 @@
-# ifndef __CONTROL_H__
-# define __CONTROL_H__
-# include <TransferNode.h>
-# include <motor.h>
+# ifndef __PID_CONTROLLER_H__
+# define __PID_CONTROLLER_H__@
 
 
-class PIDController
+
+
+
+
+class pid_controller
 {
   private:
     float kP, kI, kD, kF;
@@ -12,17 +14,17 @@ class PIDController
     float outputValue;
 
     float sumErrors; // sum of errors for the integral term
-    float prev_error;
+    float prev_error = 0;
     // The percentage range below or above the set point,
     // where the integral coefficient is included. To prevent integral windup.
 
     float k_i_range;
     float setpoint = 0; // set_point
     float tolerance = 0;
-    TransferNode setpointSource;
-    TransferNode sensor;
-    TransferNode outputNode;
-    Motor outputMotor;
+    transfer_node setpointSource;
+    sensor pidSensor;
+    transfer_node outputNode;
+    motor outputMotor;
     bool state; // whether the PID is turned on or not.
     bool nodeOutput;
     bool setpointSet = false;
@@ -36,9 +38,8 @@ class PIDController
       kP = k_p;
       kI = k_i;
       kD = k_d;
-      kF = k_input_pid;
-      setpointSource = null;
-      sensor = null;
+      kF = k_f;
+      
       nodeOutput = false;
       prev_error = 0;
     }
@@ -57,25 +58,24 @@ class PIDController
       tolerance = tol;
     }
 
-    void setSetpointSource(TransferNode source) {
+    void setSetpointSource(transfer_node source) {
       if(setpoint != 0) {
-        print("Setting setpoint source with setpoint set exception");
       } else {
         setpointSource = source;
       }
       setpointSet = false;
     }
 
-    void setSensor(TransferNode sensorSource) {
-      sensor = sensorSource;
+    void setSensor(sensor sensorSource) {
+      pidSensor = sensorSource;
     }
 
-    void setOutput(TransferNode output) {
+    void setOutput(transfer_node output) {
       outputNode = output;
       nodeOutput = true;
     }
 
-    void setOutput(Motor output) {
+    void setOutput(motor output) {
       outputMotor = output;
     }
 
@@ -83,10 +83,10 @@ class PIDController
       float error;
       float sp;
       if(!setpointSet) {
-            error = setpointSource.pidGet() - sensorSource.pidGet();
+            error = setpointSource.pidGet() - pidSensor.pid_get();
             sp = setpointSource.pidGet();
       } else {
-            error = setpoint - sensorSource.pidGet();
+            error = setpoint - pidSensor.pid_get();
             sp = setpoint;
       }
       return error;
@@ -95,13 +95,13 @@ class PIDController
     void update()
     {
         if(state) {
-          float error;
+          float error = 0;
           float sp;
           if(!setpointSet) {
-            error = setpointSource.pidGet() - sensorSource.pidGet();
+            error = setpointSource.pidGet() - pidSensor.pid_get();
             sp = setpointSource.pidGet();
           } else {
-            error = setpoint - sensorSource.pidGet();
+            error = setpoint - pidSensor.pid_get();
             sp = setpoint;
           }
 
@@ -114,10 +114,10 @@ class PIDController
   
           float propTerm = kP * error;
           float integralTerm = kI * kP * sumErrors;
-          float derivativeTerm = kD * kP * (error - prevError);
+          float derivativeTerm = kD * kP * (error - prev_error);
           float ffTerm = kF * sp;
 
-          output = propTerm + integralTerm + derivativeTerm + ffTerm;
+          float output = propTerm + integralTerm + derivativeTerm + ffTerm;
 
           if (output > maxOutputRange) {
             output = maxOutputRange;
@@ -161,13 +161,7 @@ class PIDController
     }
 
 
-    void tune(float k_p, float k_i, float k_d, float k_input_pid)
-    {
-      coefficients[0] = k_p;
-      coefficients[1] = k_i;
-      coefficients[2] = k_d;
-      coefficients[3] = k_input_pid;
-    }
+    
 
     void setConstants(float k_p, float k_i, float k_d, float k_f)
     {
@@ -179,24 +173,24 @@ class PIDController
 
     void set_sp(float new_sp)
     {
-      sp = new_sp;
+      setpoint = new_sp;
     }
 
     void set_range(int min_val, int max_val)
     {
-      output_range[0] = min_val;
-      output_range[1] = max_val;
+      minOutputRange = min_val;
+      maxOutputRange = max_val;
     }
 
-    void activate()
+    void enable()
     {
       state = true;
     }
 
-    void deactivate()
+    void disable()
     {
       state = false;
-      i_error = 0;
+      sumErrors = 0;
       prev_error = 0;
     }
 

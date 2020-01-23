@@ -23,7 +23,7 @@ class sensor
       current_value = analogRead(input_pin);
     }
 
-    int get_value()
+    int pid_get()
     // Your typical and lonely getter method
     {
       return current_value;
@@ -87,7 +87,7 @@ class decoder {
       cur_rotat_count = 0; // resets rotation count for next speed measurements.
     }
 
-    float get_value()
+    float pid_get()
     // Your typical and lonely getter method
     {
       return cur_v;

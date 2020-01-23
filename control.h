@@ -2,7 +2,7 @@
 # define __CONTROL_H__
 
 
-class pid
+class control
 {
   private:
     int output_range[2] = {0, 255}; // The range of output to be used.

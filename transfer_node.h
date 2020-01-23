@@ -1,8 +1,8 @@
-# ifndef __CONTROL_H__
-# define __CONTROL_H__
+# ifndef __TRANSFER_NODE_H__
+# define __TRANSFER_NODE_H__
 
 
-class TransferNode
+class transfer_node
 {
   private:
     float value;
@@ -21,6 +21,10 @@ class TransferNode
 
     float pidGet() {
       return value;
+    }
+
+    void set(float val) {
+      value = val;
     }
 
     float setOutput(float newValue) {

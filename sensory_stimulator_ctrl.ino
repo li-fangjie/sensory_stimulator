@@ -1,35 +1,36 @@
 #include "motor.h"
 #include "sensor.h"
-#include "PIDController.h"
-#include "TransferNode.h"
+#include "transfer_node.h"
 #include "control.h"
+#include "control_2.h"
 #include "config.h"
+#include "pid_controller.h"
 
 
-#include "TimerOne.h"
+
 
 void setup() {
   // put your setup code here, to run once:
 
-  final int MIN_CURRENT = 0;
-  final int MAX_CURRENT = 5;
+  int MIN_CURRENT = 0;
+  int MAX_CURRENT = 5;
 
-  sensor torqueEncoder = new sensor();
-  sensor loadCell = new sensor();
-  sensor dcEncoder = new sensor();
-  sensor forceCurrSensor = new sensor();
-  sensor velocityCurrSensor = new sensor();
+  sensor torqueEncoder = sensor();
+  sensor loadCell = sensor();
+  sensor dcEncoder = sensor();
+  sensor forceCurrSensor = sensor();
+  sensor velocityCurrSensor = sensor();
 
-  motor torqueMotor = new motor();
-  motor dcMotor = new motor();
+  motor torqueMotor = motor();
+  motor dcMotor = motor();
   
-  PIDController forceController = new PIDController(0, 0, 0, 0);
-  PIDController forceToCurrentController = new PIDController(0, 0, 0, 0);
-  PIDController velocityController = new PIDController(0, 0, 0, 0);
-  PIDController velocityToCurrentController = new PIDController(0, 0, 0, 0);
+  pid_controller forceController = pid_controller();
+  pid_controller forceToCurrentController = pid_controller();
+  pid_controller velocityController =  pid_controller();
+  pid_controller velocityToCurrentController =  pid_controller();
 
-  TransferNode forceNode = new TransferNode();
-  TransferNode velocityNode = new TransferNode();
+  transfer_node forceNode =  transfer_node();
+  transfer_node velocityNode =  transfer_node();
 
   forceController.setSetpoint(10);
   forceController.setSensor(loadCell);

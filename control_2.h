@@ -6,7 +6,7 @@ void copy(T* dst, T* src, int len) {
     memcpy(dst, src, sizeof(src[0])*len);
 }
 
-class pid
+class control_2
 {
   private:
     int output_range[2] = {0, 255}; // The range of output to be used.
