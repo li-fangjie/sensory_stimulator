@@ -77,15 +77,22 @@ void update_values()
 void update_pid()
 {
   tor_load_s_pid.update();
+  vel_enc_pid.update();
   tor_curr_pid.update();
   vel_curr_pid.update();
-  vel_enc_pid.update();
+}
+
+void update_motors()
+{
+  tor_motor.operate();
+  vel_motor.operate();
 }
 
 void update_all()
 {
   update_values();
   update_pid();
+  update_motors;
 }
 
 
@@ -93,8 +100,8 @@ void setup() {
   Serial.begin(9600);
   
   // put your setup code here, to run once:
-  tor_motor.setup(tor_input_1, tor_input_2, tor_input_pwm);
-  vel_motor.setup(vel_input_1, vel_input_2, vel_input_pwm);
+  tor_motor.setup(tor_input_1, tor_input_2, tor_input_pwm, tor_curr_pid.get_p_output());
+  vel_motor.setup(vel_input_1, vel_input_2, vel_input_pwm, tor_curr_pid.get_p_output());
 
   load_s.setup(load_DAT, load_CLK);
   tor_enc.setup(tor_encoder_1, tor_encoder_2, encoder_ppr);
@@ -138,9 +145,9 @@ void loop() {
     updated = true;
     
     Serial.print("Torque Encoder: ");
-    Serial.println(tor_enc.get_rpm());
+    Serial.println(tor_enc.get_value());
     Serial.print("Velocity Encoder: ");
-    Serial.println(vel_enc.get_rpm());
+    Serial.println(vel_enc.get_value());
     
     Serial.print("Torque Current: ");
     Serial.println(tor_curr.get_value());
@@ -150,9 +157,6 @@ void loop() {
     
     Serial.print("Load Cell: ");
     Serial.println(load_s.get_value());
-    
-    tor_motor.operate(250);
-    vel_motor.operate(250);
   }
   // int val = analogRead(A1);
   //Serial.println(val); 
