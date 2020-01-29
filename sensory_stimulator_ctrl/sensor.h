@@ -124,4 +124,3 @@ class encoder : private sensor_interface
 
 
 #endif
-

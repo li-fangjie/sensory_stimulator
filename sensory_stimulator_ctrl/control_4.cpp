@@ -1,4 +1,4 @@
-#include "motor.h"
+#include "i.h"
 #include "Arduino.h"
 
 void motor::setup(int pin_1, int pin_2, int pin_pwm)
