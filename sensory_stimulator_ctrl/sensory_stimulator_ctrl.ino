@@ -84,25 +84,27 @@ void update_pid()
 
 void update_motors()
 {
-  tor_motor.operate();
-  vel_motor.operate();
+  tor_motor.operate(tor_curr_pid.get_output());
+  vel_motor.operate(tor_curr_pid.get_output());
 }
 
 void update_all()
 {
   update_values();
-  update_pid();
-  update_motors;
+  // update_pid();
+  // update_motors;
 }
 
 
 void setup() {
   Serial.begin(9600);
-  
+  // load_s.setup(load_DAT, load_CLK);
   // put your setup code here, to run once:
-  tor_motor.setup(tor_input_1, tor_input_2, tor_input_pwm, tor_curr_pid.get_p_output());
-  vel_motor.setup(vel_input_1, vel_input_2, vel_input_pwm, tor_curr_pid.get_p_output());
-
+  // tor_motor.setup(tor_input_1, tor_input_2, tor_input_pwm, tor_curr_pid.get_p_output());
+  // vel_motor.setup(vel_input_1, vel_input_2, vel_input_pwm, tor_curr_pid.get_p_output());
+  vel_motor.setup(vel_input_1, vel_input_2, vel_input_pwm);
+  tor_motor.setup(tor_input_1, tor_input_2, tor_input_pwm);
+  
   load_s.setup(load_DAT, load_CLK);
   tor_enc.setup(tor_encoder_1, tor_encoder_2, encoder_ppr);
   vel_enc.setup(vel_encoder_1, vel_encoder_2, encoder_ppr);
@@ -132,18 +134,30 @@ void setup() {
   Timer3.attachInterrupt(update_measured);
 }
 
+/*
+void loop() {
+  for(int i = 0;i<5;i++){
+    load_s.raw_measure();
+  }
+  load_s.update_value();
+  Serial.println(load_s.get_value());
+  Serial.println("hello");
+}
+*/
+
 void loop() {
   // put your main code here, to run repeatedly:
+  Serial.println("hi");
   if (!measured){
-    raw_measures();
+    // raw_measures();
     measured = true;
   }
   if(!updated){
     // So if measured is false, values will be updated;
     // update_values();
-    update_all();
+    // update_all();
     updated = true;
-    
+
     Serial.print("Torque Encoder: ");
     Serial.println(tor_enc.get_value());
     Serial.print("Velocity Encoder: ");
@@ -158,6 +172,8 @@ void loop() {
     Serial.print("Load Cell: ");
     Serial.println(load_s.get_value());
   }
+  
+  Serial.println("hi");
   // int val = analogRead(A1);
   //Serial.println(val); 
 }

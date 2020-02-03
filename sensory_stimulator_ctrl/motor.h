@@ -9,7 +9,7 @@ class motor
     int output_pin_2;
     int output_pin_pwm;
     float * input;
-    bool input_set = false;
+    // bool input_set = false;
 
   public:
     motor(){};

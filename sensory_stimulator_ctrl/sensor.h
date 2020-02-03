@@ -28,12 +28,13 @@ class sensor_interface
   */
 };
 
+template <class C>
 class sensor : public sensor_interface
 { 
   protected:
     int input_pin;
     int cur_raw_count;
-    int raw_val_s[40];
+    C raw_val_s[40];
 
   public:
     sensor();
@@ -51,7 +52,7 @@ class sensor : public sensor_interface
     float* get_p_value();
 };
 
-class load_cell : public sensor
+class load_cell : public sensor<float>
 {
   int CLK;
   HX711 scale;
@@ -60,12 +61,12 @@ class load_cell : public sensor
     load_cell();
     void setup(int n_DOUT, int n_CLK);
 
-    void measure();
+    void raw_measure();
 
     void update_value();
 };
 
-class current_sensor : public sensor
+class current_sensor : public sensor<int>
 {
   private:
   int offset_mv = 2500;
@@ -121,6 +122,5 @@ class encoder : private sensor_interface
 
     float get_rpm();
 };
-
 
 #endif

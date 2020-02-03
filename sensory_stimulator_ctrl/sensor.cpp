@@ -6,50 +6,58 @@
 
 #define calibration_factor -7050.0 // Calibration factor, which we need to acquire with from calibration tests.
 
-sensor::sensor(){};
+template <class C>
+sensor<C>::sensor(){};
 
-void sensor::setup(int pin)
+template <class C>
+void sensor<C>::setup(int pin)
 {
   input_pin = pin;
   pinMode(input_pin, INPUT);
 }
 
-void sensor::raw_measure()
+template <class C>
+void sensor<C>::raw_measure()
 // to be called at a rate higher than the PID update steps, 
-// measurements stored in an array, with average calculated for each update step
+// measurements stored in an array, with average calculated for each PID update step
 {
   raw_val_s[cur_raw_count] = analogRead(input_pin);
-  ++cur_raw_count;
+  ++ cur_raw_count;
 }
 
-void sensor::measure()
-// Only calculates the average of measurements instead of making real measurements
+template <class C>
+void sensor<C>::measure()
+// calculates the average of measurements instead of making real measurements
 {
-  float sum;
+  float sum = 0;
   for(int i=0;i<cur_raw_count;++i){
-  sum += raw_val_s[cur_raw_count];
+    sum += (float)raw_val_s[i];
+    Serial.println((float)raw_val_s[i]);
   }
-  cur_val = (float)sum / (float)cur_raw_count;
-  cur_out = cur_out;
+  cur_val = sum / (float)cur_raw_count; // cur_val serves as an intermediate step, can be used for further processing.
+  cur_out = cur_val; 
   cur_raw_count = 0;  
 }
 
-void sensor::update_value(){
+template <class C>
+void sensor<C>::update_value(){
   measure();
 }
 
-float sensor::get_value()
+template <class C>
+float sensor<C>::get_value()
 // Your typical and lonely getter method
 {
   return cur_out;
 }
 
-float* sensor::get_p_value()
+template <class C>
+float* sensor<C>::get_p_value()
 {
   return & cur_out;
 }
 
-load_cell::load_cell() : sensor(){}
+load_cell::load_cell() : sensor<float>(){}
 
 void load_cell::setup(int n_DOUT, int n_CLK)
 {
@@ -63,8 +71,11 @@ void load_cell::setup(int n_DOUT, int n_CLK)
   scale.tare();
 }
 
-void load_cell::measure(){
-  cur_val = scale.get_value(5);
+void load_cell::raw_measure(){
+  if(1){
+    raw_val_s[cur_raw_count] = scale.get_units(1);
+    ++ cur_raw_count;  
+  }
 }
 
 void load_cell::update_value(){
@@ -156,3 +167,6 @@ float encoder::get_rpm()
   return rpm;
 }
 
+// Sort out the template issues:
+template class sensor<int>;
+template class sensor<float>;

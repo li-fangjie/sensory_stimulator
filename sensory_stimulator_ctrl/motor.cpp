@@ -1,5 +1,6 @@
 #include "motor.h"
 #include "Arduino.h"
+
 void motor::setup(int pin_1, int pin_2, int pin_pwm)
 {
 	output_pin_1 = pin_1;
@@ -11,13 +12,21 @@ void motor::setup(int pin_1, int pin_2, int pin_pwm)
   analogWrite(output_pin_pwm, 0);
   digitalWrite(output_pin_1, HIGH);
   digitalWrite(output_pin_2, LOW);
+  input = new float;
 }
 
 void motor::operate(int val)
 {
-    digitalWrite(output_pin_1, val>=0? HIGH:LOW);
-    digitalWrite(output_pin_2, val<0? HIGH:LOW);
+    *input = (float)val;
+    this -> operate();
+}
+
+void motor::operate()
+{
+    digitalWrite(output_pin_1, input>=0? HIGH:LOW);
+    digitalWrite(output_pin_2, input<0? HIGH:LOW);
     // digitalWrite(output_pin_1, HIGH);
     // digitalWrite(output_pin_2, LOW);
-    analogWrite(output_pin_pwm, abs(val));
+    analogWrite(output_pin_pwm, abs((int)input));
 }
+
