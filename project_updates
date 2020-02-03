@@ -3,3 +3,16 @@
 	TODO:
 		Shield wire for enc
 		Start testing
+
+2/2/2020:
+	Debugging and testing with hardware(again)
+	Progress:
+		The code now compiles properly, with some unexpected bugs fixed.
+		Tested with current sensor, which functions.
+		Tested with load sensor, the code functions. 
+		However, the the load cell chip we use have 2 modes: Hi/Lo refresh ratei(80/10Hz). I(FJ) somehow changed the chip to Lo rate, making the reading very slow.  
+	TODO:(Alot)
+		Testing code with the encoder.
+		Reverting the LC chip back to high refresh rate(hardware end)
+		Testing the PID controller with the motors and sensors
+	
