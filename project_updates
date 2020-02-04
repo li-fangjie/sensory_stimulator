@@ -15,4 +15,12 @@
 		Testing code with the encoder.
 		Reverting the LC chip back to high refresh rate(hardware end)
 		Testing the PID controller with the motors and sensors
-	
+
+2/3/20:
+	Debugging and testing with hardware
+	Progress:
+		Sensor, pid control and motor libraries are tested independanty with success.
+		Trial runs are done for the velocity pid control, showing the usablity of the system.
+	TODO:
+		circuit cleanup.
+		Sort out the LC chip, and produce new 4-sensor load sensor.
