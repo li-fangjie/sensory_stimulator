@@ -23,10 +23,15 @@ void motor::operate(int val)
 
 void motor::operate()
 {
-    digitalWrite(output_pin_1, input>=0? HIGH:LOW);
-    digitalWrite(output_pin_2, input<0? HIGH:LOW);
+    digitalWrite(output_pin_1, *input>=0? HIGH:LOW);
+    digitalWrite(output_pin_2, *input<0? HIGH:LOW);
     // digitalWrite(output_pin_1, HIGH);
     // digitalWrite(output_pin_2, LOW);
-    analogWrite(output_pin_pwm, abs((int)input));
+    analogWrite(output_pin_pwm, abs((int)*input));
+}
+
+void motor::get_p_input()
+{
+  return input;
 }
 

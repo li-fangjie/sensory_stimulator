@@ -8,6 +8,7 @@ class pid_controller
         float * output;
         float kP, kI, kD, kF;
         float * sp;
+        bool has_up_stream = false;
         float resolution = 0;
         float out_range[2] = {-255, 255};
         

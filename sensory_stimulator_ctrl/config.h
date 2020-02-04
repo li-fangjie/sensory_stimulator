@@ -6,17 +6,17 @@ namespace stimulator{
   const float drum_diameter = 80; // drum diameter in mm
   const int encoder_ppr = 600; // pulse per rotation of the encoder, from the spec sheet.
   const float update_per = 200000; // the period used by the timerOne library, in micro seconds.
-  const float measure_per = 10000;
+  const float measure_per = 100000;
 
 
   // These pins need to be updated based on the ditial layouts
-  const int tor_input_1 = 5;
-  const int tor_input_2 = 6;
-  const int tor_input_pwm = 4;
+  const int tor_input_1 = 12;
+  const int tor_input_2 = 7;
+  const int tor_input_pwm = 13;
 
-  const int vel_input_1 = 12;
-  const int vel_input_2 = 7;
-  const int vel_input_pwm = 13;
+  const int vel_input_1 = 5;
+  const int vel_input_2 = 6;
+  const int vel_input_pwm = 4;
 
   const int tor_encoder_1 = 2;
   const int tor_encoder_2 = 18;
@@ -37,8 +37,8 @@ namespace stimulator{
   const float vel_curr_pid_coef[4] = {1,1,1,1};
   
   // The setpoints for load cell and encoder pids
-  const float tor_load_s_pid_sp = 10; // Should be in kg
-  const float vel_enc_pid_sp = 120; // So, given as the linear velocity, in mm/s
+  const float tor_load_s_pid_sp = 1; // Should be in kg
+  const float vel_enc_pid_sp = 10; // So, given as the linear velocity, in mm/s
 }
 
 

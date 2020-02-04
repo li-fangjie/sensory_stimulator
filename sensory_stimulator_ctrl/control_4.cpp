@@ -33,6 +33,7 @@ void pid_controller::setup(float* n_input, float* n_output, float* n_sp, float k
   kD = k[2];
   kF = k[3];
   output = n_output;
+  has_up_stream = true;
 }
 
 void pid_controller::set_resolution(float reso)
@@ -49,7 +50,7 @@ void pid_controller::set_output_range(float lower, float upper)
 void pid_controller::post_process()
 {
     if(*output < out_range[0]) *output = out_range[0];
-    if(*output < out_range[1]) *output = out_range[1];   
+    if(*output > out_range[1]) *output = out_range[1];
 }
 
 void pid_controller::activate()
@@ -70,7 +71,7 @@ void pid_controller::update()
     float error = *sp - *input;
     i_error += error;
 
-    if (error < resolution){
+    if (abs(error) < resolution){
         error = 0;
         i_error = 0;
     }
@@ -78,7 +79,8 @@ void pid_controller::update()
     float p_term = kP * error;
     float i_term = kI * kP * i_error;
     float d_term = kD * kP * (error - prev_error);
-    float f_term = kF * (*sp);
+    float f_term = 0;
+    if(has_up_stream) f_term = kF * (*sp);
     *output = p_term + i_term + d_term + f_term;
     
     post_process();

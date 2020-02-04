@@ -87,9 +87,9 @@ class encoder : private sensor_interface
 
     volatile int cur_pulse_count;
     volatile int cur_rotat_count;
-    float time_period; // The time elapsed from last calculation, in microseconds.
-    float c;
-    float cur_val;
+    // float time_period; // The time elapsed from last calculation, in microseconds.
+    float circ;
+    float cur_out;
     float cur_rps;
 
   public:

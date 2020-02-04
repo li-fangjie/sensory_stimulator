@@ -20,6 +20,8 @@ class motor
     void operate(int val);
 
     void operate();
+    
+    void get_p_input();
 };
 
 
