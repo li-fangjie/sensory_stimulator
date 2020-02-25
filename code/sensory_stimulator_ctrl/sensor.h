@@ -3,7 +3,6 @@
 #include "HX711.h" //
 // Please refer to: https://learn.sparkfun.com/tutorials/load-cell-amplifier-hx711-breakout-hookup-guide
 
-#define calibration_factor -7050.0 // Calibration factor, which we need to acquire with from calibration tests.
 
 /*A sensor or encoder object should input and raw value, 
   and process them such that they can be used directly in the control system*/
@@ -56,10 +55,11 @@ class load_cell : public sensor<float>
 {
   int CLK;
   HX711 scale;
+  int coef;
   
   public:
     load_cell();
-    void setup(int n_DOUT, int n_CLK);
+    void setup(int n_DOUT, int n_CLK, int n_coef);
 
     void raw_measure();
 

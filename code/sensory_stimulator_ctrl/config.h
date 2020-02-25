@@ -7,6 +7,7 @@ namespace stimulator{
   const int encoder_ppr = 600; // pulse per rotation of the encoder, from the spec sheet.
   const float update_per = 200000; // the period used by the timerOne library, in micro seconds.
   const float measure_per = 10000;
+  const int load_s_coef = 1450;
 
 
   // These pins need to be updated based on the ditial layouts
@@ -37,7 +38,7 @@ namespace stimulator{
   const float vel_curr_pid_coef[4] = {1,1,1,1};
   
   // The setpoints for load cell and encoder pids
-  const float tor_load_s_pid_sp = 1; // Should be in kg
+  const float tor_load_s_pid_sp = 1; // Should be in g
   const float vel_enc_pid_sp = 10; // So, given as the linear velocity, in mm/s
 }
 

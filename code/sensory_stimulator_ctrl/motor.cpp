@@ -12,26 +12,31 @@ void motor::setup(int pin_1, int pin_2, int pin_pwm)
   analogWrite(output_pin_pwm, 0);
   digitalWrite(output_pin_1, HIGH);
   digitalWrite(output_pin_2, LOW);
-  input = new float;
+  p_input = NULL;
 }
 
-void motor::operate(int val)
-{
-    *input = (float)val;
-    this -> operate();
+void motor::setup(int pin_1, int pin_2, int pin_pwm, float* n_p_input){
+  this -> setup(pin_1, pin_2, pin_pwm);
+  p_input = n_p_input;
 }
 
 void motor::operate()
 {
-    digitalWrite(output_pin_1, *input>=0? HIGH:LOW);
-    digitalWrite(output_pin_2, *input<0? HIGH:LOW);
-    // digitalWrite(output_pin_1, HIGH);
-    // digitalWrite(output_pin_2, LOW);
-    analogWrite(output_pin_pwm, abs((int)*input));
+    if(p_input != NULL) this -> operate(*p_input);
+    else operate(0);
 }
 
-void motor::get_p_input()
+void motor::operate(float val)
+{   
+    digitalWrite(output_pin_1, val >= 0? HIGH:LOW);
+    digitalWrite(output_pin_2, val < 0? HIGH:LOW);
+    // digitalWrite(output_pin_1, HIGH);
+    // digitalWrite(output_pin_2, LOW);
+    analogWrite(output_pin_pwm, abs((int)val));
+}
+
+float* motor::get_p_input()
 {
-  return input;
+  return p_input;
 }
 

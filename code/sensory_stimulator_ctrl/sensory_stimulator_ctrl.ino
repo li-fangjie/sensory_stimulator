@@ -91,19 +91,19 @@ void update_motors()
   // tor_motor.operate(tor_curr_pid.get_output());
   // vel_motor.operate(vel_curr_pid.get_output());
   // tor_motor.operate(tor_load_s_pid.get_output());
-  // vel_motor.operate(vel_enc_pid.get_output());
+  vel_motor.operate();
   // tor_motor.operate(255);
-  vel_motor.operate(255);
+  // vel_motor.operate(255);
 }
 
 void setup() {
   Serial.begin(9600);
   // load_s.setup(load_DAT, load_CLK);
   // put your setup code here, to run once:
-  vel_motor.setup(vel_input_1, vel_input_2, vel_input_pwm);
-  tor_motor.setup(tor_input_1, tor_input_2, tor_input_pwm);
+  vel_motor.setup(vel_input_1, vel_input_2, vel_input_pwm, vel_enc_pid.get_p_output());
+  tor_motor.setup(tor_input_1, tor_input_2, tor_input_pwm, tor_load_s_pid.get_p_output());
   
-  load_s.setup(load_DAT, load_CLK);
+  load_s.setup(load_DAT, load_CLK, load_s_coef);
   // tor_enc.setup(tor_encoder_1, tor_encoder_2, encoder_ppr);
   vel_enc.setup(vel_encoder_1, vel_encoder_2, encoder_ppr);
 

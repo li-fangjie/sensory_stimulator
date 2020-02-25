@@ -4,7 +4,6 @@
 #include "config.h"
 // Please refer to: https://learn.sparkfun.com/tutorials/load-cell-amplifier-hx711-breakout-hookup-guide
 
-#define calibration_factor -7050.0 // Calibration factor, which we need to acquire with from calibration tests.
 
 template <class C>
 sensor<C>::sensor(){};
@@ -55,14 +54,15 @@ float* sensor<C>::get_p_value()
 
 load_cell::load_cell() : sensor<float>(){}
 
-void load_cell::setup(int n_DOUT, int n_CLK)
+void load_cell::setup(int n_DOUT, int n_CLK, int n_coef)
 {
   CLK = n_CLK;
   input_pin = n_DOUT;
+  coef = n_coef;
   pinMode(CLK, INPUT);
   pinMode(input_pin, INPUT);
   scale.begin(input_pin, CLK);
-  scale.set_scale(calibration_factor);
+  scale.set_scale(coef);
   
   scale.tare();
 }
