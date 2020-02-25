@@ -34,7 +34,7 @@ class sensor : public sensor_interface
   protected:
     int input_pin;
     int cur_raw_count;
-    C raw_val_s[40];
+    C raw_val_sum;
 
   public:
     sensor();

@@ -41,7 +41,7 @@ void tor_update_b()
 */
 
 // current_sensor tor_curr;
-// current_sensor vel_curr;
+current_sensor vel_curr;
 
 // pid_controller tor_curr_pid;
 // pid_controller vel_curr_pid;
@@ -65,7 +65,7 @@ void raw_measures()
 {
   load_s.raw_measure();
   // tor_curr.raw_measure();
-  // vel_curr.raw_measure();
+  vel_curr.raw_measure();
 }
 
 void update_values()
@@ -75,7 +75,7 @@ void update_values()
   vel_enc.update_value();
   // tor_enc.update_value();
   // tor_curr.update_value();
-  // vel_curr.update_value();
+  vel_curr.update_value();
 }
 
 void update_pid()
@@ -90,10 +90,10 @@ void update_motors()
 {
   // tor_motor.operate(tor_curr_pid.get_output());
   // vel_motor.operate(vel_curr_pid.get_output());
-  tor_motor.operate(tor_load_s_pid.get_output());
-  vel_motor.operate(vel_enc_pid.get_output());
+  // tor_motor.operate(tor_load_s_pid.get_output());
+  // vel_motor.operate(vel_enc_pid.get_output());
   // tor_motor.operate(255);
-  // vel_motor.operate(-255);
+  vel_motor.operate(255);
 }
 
 void setup() {
@@ -108,7 +108,7 @@ void setup() {
   vel_enc.setup(vel_encoder_1, vel_encoder_2, encoder_ppr);
 
   // tor_curr.setup(tor_curr_input);
-  // vel_curr.setup(vel_curr_input);
+  vel_curr.setup(vel_curr_input);
 
   
   tor_load_s_pid.setup(load_s.get_p_value(), &tor_load_s_pid_sp, tor_load_s_pid_coef);
@@ -148,13 +148,16 @@ void loop() {
     update_motors();
     updated = true;
 
-    /*
+    
     Serial.print("velocity pid output: ");
     Serial.println(vel_enc_pid.get_output());
 
     Serial.print("Velocity Encoder: ");
     Serial.println(vel_enc.get_value());
-    */
+
+    Serial.print("velocity current sensor: ");
+    Serial.println(vel_curr.get_value());
+    
     /*
     Serial.print("Load Cell: ");
     Serial.println(load_s.get_value());
@@ -162,9 +165,10 @@ void loop() {
 
     Serial.print("torque pid output: ");
     Serial.println(tor_load_s_pid.get_output());
-    */
+    
     
     Serial.println(vel_enc.get_value());
+    */
   }
 
 }

@@ -21,7 +21,7 @@ void sensor<C>::raw_measure()
 // to be called at a rate higher than the PID update steps, 
 // measurements stored in an array, with average calculated for each PID update step
 {
-  raw_val_s[cur_raw_count] = analogRead(input_pin);
+  raw_val_sum += analogRead(input_pin);
   ++ cur_raw_count;
 }
 
@@ -29,13 +29,10 @@ template <class C>
 void sensor<C>::measure()
 // calculates the average of measurements instead of making real measurements
 {
-  float sum = 0;
-  for(int i=0;i<cur_raw_count;++i){
-    sum += (float)raw_val_s[i];
-  }
-  cur_val = sum / (float)cur_raw_count; // cur_val serves as an intermediate step, can be used for further processing.
+  cur_val = (float)raw_val_sum / (float)cur_raw_count; // cur_val serves as an intermediate step, can be used for further processing.
   cur_out = cur_val; 
   cur_raw_count = 0;  
+  raw_val_sum = 0;
 }
 
 template <class C>
@@ -72,7 +69,7 @@ void load_cell::setup(int n_DOUT, int n_CLK)
 
 void load_cell::raw_measure(){
   if(1){
-    raw_val_s[cur_raw_count] = scale.get_units(1);
+    raw_val_sum += scale.get_units(5);
     ++ cur_raw_count;  
   }
 }
