@@ -10,7 +10,7 @@ void pid_controller::setup(float* n_input, float* n_sp, float n_kP, float n_kI, 
     kI = n_kI;
     kD = n_kD;
     kF = n_KF;
-    output = new float;
+    output = NULL;
 }
 
 void pid_controller::setup(float* n_input, float* n_sp, float k[4])
@@ -21,7 +21,7 @@ void pid_controller::setup(float* n_input, float* n_sp, float k[4])
   kI = k[1];
   kD = k[2];
   kF = k[3];
-  output = new float;
+  output = NULL;
 }
 
 void pid_controller::setup(float* n_input, float* n_output, float* n_sp, float k[4])
@@ -32,8 +32,7 @@ void pid_controller::setup(float* n_input, float* n_output, float* n_sp, float k
   kI = k[1];
   kD = k[2];
   kF = k[3];
-  output = n_output;
-  has_up_stream = true;
+  p_output = n_output;
 }
 
 void pid_controller::set_resolution(float reso)
@@ -49,8 +48,8 @@ void pid_controller::set_output_range(float lower, float upper)
 
 void pid_controller::post_process()
 {
-    if(*output < out_range[0]) *output = out_range[0];
-    if(*output > out_range[1]) *output = out_range[1];
+    if(output < out_range[0]) output = out_range[0];
+    if(output > out_range[1]) output = out_range[1];
 }
 
 void pid_controller::activate()
@@ -81,8 +80,8 @@ void pid_controller::update()
     float d_term = kD * kP * (error - prev_error);
     float f_term = 0;
     if(has_up_stream) f_term = kF * (*sp);
-    *output = p_term + i_term + d_term + f_term;
-    
+    output = p_term + i_term + d_term + f_term;
+    if(p_output != NULL) *p_output = output;
     post_process();
     prev_error = error;
 }
@@ -97,12 +96,17 @@ void pid_controller::set_coef(float k_p, float k_i, float k_d, float k_f)
 
 float* pid_controller::get_p_output()
 {
-    return output;
+    return &output;
+}
+
+float* pid_controller::get_ext_p_output()
+{
+    return p_output;
 }
 
 float pid_controller::get_output()
 {
-    return *output;
+    return output;
 }
 
 float pid_controller::get_kP()
@@ -123,9 +127,4 @@ float pid_controller::get_kD()
 float pid_controller::get_kF()
 {
     return kF;
-}
-
-void pid_controller::terminate()
-{
-  delete output;
 }

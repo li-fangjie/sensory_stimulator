@@ -5,7 +5,8 @@ class pid_controller
 {
     private:
         float * input;
-        float * output;
+        float output;
+        float * p_output;
         float kP, kI, kD, kF;
         float * sp;
         bool has_up_stream = false;
@@ -39,6 +40,8 @@ class pid_controller
         void set_coef(float k_p, float k_i, float k_d, float k_f);
 
         float* get_p_output();
+
+        float* get_ext_p_output();
 
         float get_output();
 

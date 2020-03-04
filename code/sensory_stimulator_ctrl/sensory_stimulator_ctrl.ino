@@ -89,11 +89,11 @@ void update_pid()
 void update_motors()
 {
   // tor_motor.operate(tor_curr_pid.get_output());
-  // vel_motor.operate(vel_curr_pid.get_output());
+  // vel_motor.operate(vel_enc_pid.get_output());
   // tor_motor.operate(tor_load_s_pid.get_output());
   vel_motor.operate();
   // tor_motor.operate(255);
-  // vel_motor.operate(255);
+//   vel_motor.operate(255);
 }
 
 void setup() {
@@ -155,8 +155,8 @@ void loop() {
     Serial.print("Velocity Encoder: ");
     Serial.println(vel_enc.get_value());
 
-    Serial.print("velocity current sensor: ");
-    Serial.println(vel_curr.get_value());
+    // Serial.print("velocity current sensor: ");
+    // Serial.println(vel_curr.get_value());
     
     /*
     Serial.print("Load Cell: ");
