@@ -12,12 +12,14 @@
 
 HX711 scale;
 
-float calibration_factor = 1450; // this calibration factor is adjusted according to my load cell
+// float calibration_factor = 1450; // this calibration factor is adjusted according to my load cell
+float calibration_factor = -457;
 float units;
 float ounces;
 int count = 0;
 float gradient = 0;
 float prev = 0;
+long int cur_t = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -34,16 +36,19 @@ void setup() {
   long zero_factor = scale.read_average(200000); //Get a baseline reading
   // Serial.print("Zero factor: "); //This can be used to remove the need to tare the scale. Useful in permanent scale projects.
   // Serial.println(zero_factor);
+
 }
 
 void loop() {
-
   scale.set_scale(calibration_factor); //Adjust to this calibration factor
 
-  Serial.print("Reading: ");
-  units = scale.get_units(10);
-  ounces = units * 0.035274;
-  Serial.println(units);
+  if(millis() - cur_t > 50){
+    Serial.print("Reading: ");
+    units = scale.get_units(10);
+    // ounces = units * 0.035274;
+    Serial.println(units);
+    cur_t = millis();
+  }
   /*
   if(count == 10){
     gradient = (units-prev)/10.0;
@@ -68,5 +73,7 @@ void loop() {
       calibration_factor += 1;
     else if(temp == '-' || temp == 'z')
       calibration_factor -= 1;
+    else if(temp == 'm')
+      cur_t = millis();
   }
 }
