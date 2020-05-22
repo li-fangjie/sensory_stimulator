@@ -9,7 +9,6 @@ class motor
     int output_pin_2 = 0;
     int output_pin_pwm = 0;
     float * p_input;
-    float input = 0;
     // bool input_set = false;
 
   public:

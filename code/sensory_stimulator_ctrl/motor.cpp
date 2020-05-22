@@ -23,7 +23,7 @@ void motor::setup(int pin_1, int pin_2, int pin_pwm, float* n_p_input){
 void motor::operate()
 {
     if(p_input != NULL) this -> operate(*p_input);
-    else operate(input);
+    else operate(0);
 }
 
 void motor::operate(float val)
@@ -38,9 +38,4 @@ void motor::operate(float val)
 float* motor::get_ext_p_input()
 {
   return p_input;
-}
-
-float* motor::get_p_input()
-{
-  return &input;
 }

@@ -36,10 +36,6 @@ namespace stimulator{
   const float tor_curr_pid_coef[4] = {1,1,1,1};
   const float vel_enc_pid_coef[4] = {.7,.02,0,0};
   const float vel_curr_pid_coef[4] = {1,1,1,1};
-  
-  // The setpoints for load cell and encoder pids
-  const float tor_load_s_pid_sp = 1; // Should be in g
-  const float vel_enc_pid_sp = 100; // So, given as the linear velocity, in mm/s
 }
 
 

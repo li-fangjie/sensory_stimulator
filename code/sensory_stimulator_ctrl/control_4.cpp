@@ -10,10 +10,10 @@ void pid_controller::setup(float* n_input, float* n_sp, float n_kP, float n_kI, 
     kI = n_kI;
     kD = n_kD;
     kF = n_KF;
-    output = NULL;
+    p_output = NULL;
 }
 
-void pid_controller::setup(float* n_input, float* n_sp, float k[4])
+void pid_controller::setup(float* n_input, float* n_sp, const float k[4])
 {
   input = n_input;
   sp = n_sp;
@@ -21,10 +21,10 @@ void pid_controller::setup(float* n_input, float* n_sp, float k[4])
   kI = k[1];
   kD = k[2];
   kF = k[3];
-  output = NULL;
+  p_output = NULL;
 }
 
-void pid_controller::setup(float* n_input, float* n_output, float* n_sp, float k[4])
+void pid_controller::setup(float* n_input, float* n_output, float* n_sp, const float k[4])
 {
   input = n_input;
   sp = n_sp;

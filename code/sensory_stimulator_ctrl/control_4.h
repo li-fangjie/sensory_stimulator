@@ -21,9 +21,9 @@ class pid_controller
     public:
         void setup(float* n_input, float* n_sp, float n_kP, float n_kI, float n_kD, float n_KF);
 
-        void setup(float* n_input, float* n_sp, float k[4]);
+        void setup(float* n_input, float* n_sp, const float k[4]);
 
-        void setup(float* n_input, float* n_output, float* n_sp, float k[4]);
+        void setup(float* n_input, float* n_output, float* n_sp, const float k[4]);
 
         void set_resolution(float reso);
 
