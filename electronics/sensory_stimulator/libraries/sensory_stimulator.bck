@@ -1,9 +1,0 @@
-EESchema-DOCLIB  Version 2.0
-#
-$CMP Dual_Motor_Driver(L298)
-D ESC for DC motor.
-K connector
-F ~
-$ENDCMP
-#
-#End Doc Library
