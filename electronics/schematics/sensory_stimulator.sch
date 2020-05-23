@@ -1,0 +1,522 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Sensory Stimulator Drum"
+Date "2020-05-23"
+Rev "1.0"
+Comp "FJ"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L arduino:Arduino_Mega2560_Shield XA1
+U 1 1 5EC8E5FE
+P 5100 3750
+F 0 "XA1" H 5100 1369 60  0000 C CNN
+F 1 "Arduino_Mega2560_Shield" H 5100 1263 60  0000 C CNN
+F 2 "" H 5800 6500 60  0001 C CNN
+F 3 "https://store.arduino.cc/arduino-mega-2560-rev3" H 5800 6500 60  0001 C CNN
+	1    5100 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Motor:Motor_DC M1
+U 1 1 5ECB1F57
+P 7350 1850
+F 0 "M1" H 7400 1950 50  0000 L CNN
+F 1 "Velocity Motor" H 7500 1800 50  0000 L CNN
+F 2 "" H 7350 1760 50  0001 C CNN
+F 3 "~" H 7350 1760 50  0001 C CNN
+	1    7350 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L sensory_stimulator:HX711_Load_Cell_Board U1
+U 1 1 5ECB4B36
+P 2950 3150
+F 0 "U1" H 2875 3525 50  0000 C CNN
+F 1 "HX711_Load_Cell_Board" H 2875 3434 50  0000 C CNN
+F 2 "" H 2950 3150 50  0001 C CNN
+F 3 "" H 2950 3150 50  0001 C CNN
+	1    2950 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L sensory_stimulator:Load_Cell_(with_pin_colors) U3
+U 1 1 5ECB594C
+P 2100 3150
+F 0 "U3" H 1650 3300 50  0000 R CNN
+F 1 "Load_Cell_(with_pin_colors)" H 2400 3400 50  0000 R CNN
+F 2 "" H 2100 3150 50  0001 C CNN
+F 3 "" H 2100 3150 50  0001 C CNN
+	1    2100 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 3000 2200 3000
+Wire Wire Line
+	2200 3100 2600 3100
+Wire Wire Line
+	2600 3200 2200 3200
+Wire Wire Line
+	2200 3300 2600 3300
+$Comp
+L power:GND #PWR05
+U 1 1 5ECB87AF
+P 3500 3600
+F 0 "#PWR05" H 3500 3350 50  0001 C CNN
+F 1 "GND" H 3505 3427 50  0000 C CNN
+F 2 "" H 3500 3600 50  0001 C CNN
+F 3 "" H 3500 3600 50  0001 C CNN
+	1    3500 3600
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 3100 3500 3600
+Wire Wire Line
+	3500 3100 3150 3100
+Wire Wire Line
+	3150 3400 3450 3400
+Wire Wire Line
+	3450 3400 3450 3050
+$Comp
+L power:+5VD #PWR06
+U 1 1 5ECBA276
+P 3450 3050
+F 0 "#PWR06" H 3450 2900 50  0001 C CNN
+F 1 "+5VD" H 3465 3223 50  0000 C CNN
+F 2 "" H 3450 3050 50  0001 C CNN
+F 3 "" H 3450 3050 50  0001 C CNN
+	1    3450 3050
+	-1   0    0    -1  
+$EndComp
+$Comp
+L sensory_stimulator:Rotary_Encoder U2
+U 1 1 5ECC1D89
+P 3050 1200
+F 0 "U2" H 3278 1141 50  0000 L CNN
+F 1 "Rotary_Encoder" H 3278 1050 50  0000 L CNN
+F 2 "" H 2900 1210 50  0001 C CNN
+F 3 "~" H 3050 1460 50  0001 C CNN
+	1    3050 1200
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR09
+U 1 1 5ECC30C4
+P 7950 1400
+F 0 "#PWR09" H 7950 1250 50  0001 C CNN
+F 1 "+5VD" H 7965 1573 50  0000 C CNN
+F 2 "" H 7950 1400 50  0001 C CNN
+F 3 "" H 7950 1400 50  0001 C CNN
+	1    7950 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8100 1450 7950 1450
+Wire Wire Line
+	7950 1450 7950 1400
+$Comp
+L power:+5VD #PWR012
+U 1 1 5ECC62E2
+P 9050 1400
+F 0 "#PWR012" H 9050 1250 50  0001 C CNN
+F 1 "+5VD" H 9065 1573 50  0000 C CNN
+F 2 "" H 9050 1400 50  0001 C CNN
+F 3 "" H 9050 1400 50  0001 C CNN
+	1    9050 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8900 1450 9050 1450
+Wire Wire Line
+	9050 1450 9050 1400
+Wire Wire Line
+	7350 1650 7550 1650
+Wire Wire Line
+	7550 1650 7550 1850
+Wire Wire Line
+	7550 1850 8100 1850
+Wire Wire Line
+	7350 2150 7550 2150
+Wire Wire Line
+	7550 2150 7550 1950
+Wire Wire Line
+	7550 1950 8100 1950
+$Comp
+L Motor:Motor_DC M2
+U 1 1 5ECCBE58
+P 9650 1850
+F 0 "M2" H 9700 1950 50  0000 L CNN
+F 1 "Torque Motor" H 9850 1800 50  0000 L CNN
+F 2 "" H 9650 1760 50  0001 C CNN
+F 3 "~" H 9650 1760 50  0001 C CNN
+	1    9650 1850
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	9650 1650 9450 1650
+Wire Wire Line
+	9450 1650 9450 1850
+Wire Wire Line
+	9450 1850 8900 1850
+Wire Wire Line
+	9650 2150 9450 2150
+Wire Wire Line
+	9450 2150 9450 1950
+Wire Wire Line
+	9450 1950 8900 1950
+Wire Wire Line
+	8450 2350 8100 2350
+Wire Wire Line
+	8100 2350 8100 2250
+$Comp
+L power:+12V #PWR010
+U 1 1 5ECCF319
+P 8100 2250
+F 0 "#PWR010" H 8100 2100 50  0001 C CNN
+F 1 "+12V" H 8115 2423 50  0000 C CNN
+F 2 "" H 8100 2250 50  0001 C CNN
+F 3 "" H 8100 2250 50  0001 C CNN
+	1    8100 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8550 2350 8550 2500
+$Comp
+L power:GNDPWR #PWR011
+U 1 1 5ECD43C8
+P 8550 2500
+F 0 "#PWR011" H 8550 2300 50  0001 C CNN
+F 1 "GNDPWR" H 8554 2346 50  0000 C CNN
+F 2 "" H 8550 2450 50  0001 C CNN
+F 3 "" H 8550 2450 50  0001 C CNN
+	1    8550 2500
+	1    0    0    -1  
+$EndComp
+NoConn ~ 2600 3400
+NoConn ~ 2600 3500
+Wire Wire Line
+	6400 2600 6450 2600
+Text Label 6450 2600 0    50   ~ 0
+tor_mot_IN1
+Wire Wire Line
+	6400 2100 6450 2100
+Text Label 6450 2100 0    50   ~ 0
+tor_mot_IN2
+Wire Wire Line
+	6400 2700 6450 2700
+Text Label 6450 2700 0    50   ~ 0
+tor_mot_pwm
+Wire Wire Line
+	6400 1900 6450 1900
+Text Label 6450 1900 0    50   ~ 0
+vel_mot_IN1
+Wire Wire Line
+	6400 2000 6450 2000
+Text Label 6450 2000 0    50   ~ 0
+vel_mot_IN2
+Wire Wire Line
+	6400 1800 6450 1800
+Text Label 6450 1800 0    50   ~ 0
+vel_mot_pwm
+Text Label 8050 1550 2    50   ~ 0
+vel_mot_pwm
+Wire Wire Line
+	8100 1550 8050 1550
+Text Label 8050 1650 2    50   ~ 0
+vel_mot_IN1
+Text Label 8050 1750 2    50   ~ 0
+vel_mot_IN2
+Wire Wire Line
+	8100 1650 8050 1650
+Wire Wire Line
+	8100 1750 8050 1750
+Wire Wire Line
+	8900 1550 8950 1550
+Wire Wire Line
+	8900 1650 8950 1650
+Wire Wire Line
+	8900 1750 8950 1750
+Text Label 8950 1650 0    50   ~ 0
+tor_mot_IN1
+Text Label 8950 1750 0    50   ~ 0
+tor_mot_IN2
+Text Label 8950 1550 0    50   ~ 0
+tor_mot_pwm
+$Comp
+L power:GND #PWR07
+U 1 1 5ECF80FB
+P 3500 1750
+F 0 "#PWR07" H 3500 1500 50  0001 C CNN
+F 1 "GND" H 3505 1577 50  0000 C CNN
+F 2 "" H 3500 1750 50  0001 C CNN
+F 3 "" H 3500 1750 50  0001 C CNN
+	1    3500 1750
+	-1   0    0    -1  
+$EndComp
+NoConn ~ 4850 1150
+NoConn ~ 4950 1150
+NoConn ~ 5050 1150
+NoConn ~ 5150 1150
+NoConn ~ 5250 1150
+NoConn ~ 5350 1150
+NoConn ~ 6400 1700
+NoConn ~ 6400 2200
+NoConn ~ 6400 2300
+NoConn ~ 6400 2400
+NoConn ~ 6400 2500
+NoConn ~ 6400 2800
+NoConn ~ 6400 2900
+NoConn ~ 6400 3000
+NoConn ~ 6400 3100
+NoConn ~ 6400 3200
+NoConn ~ 6400 3300
+NoConn ~ 6400 3400
+NoConn ~ 6400 3500
+NoConn ~ 6400 3600
+NoConn ~ 6400 3700
+NoConn ~ 6400 3800
+NoConn ~ 6400 3900
+NoConn ~ 6400 4000
+NoConn ~ 6400 4100
+NoConn ~ 6400 4200
+NoConn ~ 6400 4300
+NoConn ~ 6400 4400
+NoConn ~ 6400 4500
+NoConn ~ 6400 4600
+NoConn ~ 6400 4700
+NoConn ~ 6400 4800
+NoConn ~ 6400 4900
+NoConn ~ 6400 5000
+NoConn ~ 6400 5100
+NoConn ~ 6400 5200
+NoConn ~ 6400 5300
+NoConn ~ 6400 5400
+NoConn ~ 6400 5500
+NoConn ~ 6400 5600
+NoConn ~ 6400 5700
+NoConn ~ 6400 5800
+NoConn ~ 6400 5900
+NoConn ~ 3800 1600
+NoConn ~ 3800 1700
+NoConn ~ 3800 1800
+NoConn ~ 3800 2000
+NoConn ~ 3800 2100
+NoConn ~ 3800 2200
+NoConn ~ 3800 2300
+NoConn ~ 3800 2400
+NoConn ~ 3800 2500
+NoConn ~ 3800 2600
+NoConn ~ 3800 2700
+NoConn ~ 3800 2900
+NoConn ~ 3800 3000
+NoConn ~ 3800 3100
+NoConn ~ 3800 3400
+NoConn ~ 3800 3500
+NoConn ~ 3800 3600
+NoConn ~ 3800 3700
+NoConn ~ 3800 3800
+NoConn ~ 3800 3900
+NoConn ~ 3800 4000
+NoConn ~ 3800 4100
+NoConn ~ 3800 4200
+NoConn ~ 3800 4300
+NoConn ~ 3800 4400
+NoConn ~ 3800 4500
+NoConn ~ 3800 4700
+NoConn ~ 3800 4800
+NoConn ~ 3800 5100
+NoConn ~ 3800 5200
+NoConn ~ 3800 5300
+NoConn ~ 3800 5400
+NoConn ~ 3800 5500
+NoConn ~ 3800 5700
+NoConn ~ 3800 5800
+NoConn ~ 3800 5900
+$Comp
+L power:GND #PWR03
+U 1 1 5ED4F5CC
+P 3650 5050
+F 0 "#PWR03" H 3650 4800 50  0001 C CNN
+F 1 "GND" H 3655 4877 50  0000 C CNN
+F 2 "" H 3650 5050 50  0001 C CNN
+F 3 "" H 3650 5050 50  0001 C CNN
+	1    3650 5050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 5000 3650 5050
+Wire Wire Line
+	3650 5000 3800 5000
+$Comp
+L power:+5VD #PWR04
+U 1 1 5ED5174B
+P 3650 5550
+F 0 "#PWR04" H 3650 5400 50  0001 C CNN
+F 1 "+5VD" H 3665 5723 50  0000 C CNN
+F 2 "" H 3650 5550 50  0001 C CNN
+F 3 "" H 3650 5550 50  0001 C CNN
+	1    3650 5550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3800 5600 3650 5600
+Wire Wire Line
+	3650 5600 3650 5550
+$Comp
+L power:GND #PWR01
+U 1 1 5ED5305A
+P 800 7450
+F 0 "#PWR01" H 800 7200 50  0001 C CNN
+F 1 "GND" H 805 7277 50  0000 C CNN
+F 2 "" H 800 7450 50  0001 C CNN
+F 3 "" H 800 7450 50  0001 C CNN
+	1    800  7450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR02
+U 1 1 5ED5333B
+P 1150 7400
+F 0 "#PWR02" H 1150 7250 50  0001 C CNN
+F 1 "+5VD" H 1165 7573 50  0000 C CNN
+F 2 "" H 1150 7400 50  0001 C CNN
+F 3 "" H 1150 7400 50  0001 C CNN
+	1    1150 7400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1150 7400 1150 7450
+Wire Wire Line
+	800  7450 800  7400
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 5ED56884
+P 800 7400
+F 0 "#FLG01" H 800 7475 50  0001 C CNN
+F 1 "PWR_FLAG" H 800 7573 50  0000 C CNN
+F 2 "" H 800 7400 50  0001 C CNN
+F 3 "~" H 800 7400 50  0001 C CNN
+	1    800  7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG02
+U 1 1 5ED571BF
+P 1150 7450
+F 0 "#FLG02" H 1150 7525 50  0001 C CNN
+F 1 "PWR_FLAG" H 1150 7623 50  0000 C CNN
+F 2 "" H 1150 7450 50  0001 C CNN
+F 3 "~" H 1150 7450 50  0001 C CNN
+	1    1150 7450
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+12V #PWR0101
+U 1 1 5ED5CCD2
+P 2100 7400
+F 0 "#PWR0101" H 2100 7250 50  0001 C CNN
+F 1 "+12V" H 2115 7573 50  0000 C CNN
+F 2 "" H 2100 7400 50  0001 C CNN
+F 3 "" H 2100 7400 50  0001 C CNN
+	1    2100 7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5ED5D95C
+P 2100 7450
+F 0 "#FLG0101" H 2100 7525 50  0001 C CNN
+F 1 "PWR_FLAG" H 2100 7623 50  0000 C CNN
+F 2 "" H 2100 7450 50  0001 C CNN
+F 3 "~" H 2100 7450 50  0001 C CNN
+	1    2100 7450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2100 7450 2100 7400
+$Comp
+L power:GNDPWR #PWR0102
+U 1 1 5ED621DF
+P 1600 7450
+F 0 "#PWR0102" H 1600 7250 50  0001 C CNN
+F 1 "GNDPWR" H 1604 7296 50  0000 C CNN
+F 2 "" H 1600 7400 50  0001 C CNN
+F 3 "" H 1600 7400 50  0001 C CNN
+	1    1600 7450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 5ED63F6B
+P 1600 7400
+F 0 "#FLG0102" H 1600 7475 50  0001 C CNN
+F 1 "PWR_FLAG" H 1600 7573 50  0000 C CNN
+F 2 "" H 1600 7400 50  0001 C CNN
+F 3 "~" H 1600 7400 50  0001 C CNN
+	1    1600 7400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 7400 1600 7450
+Wire Wire Line
+	3150 3200 3800 3200
+Wire Wire Line
+	3150 3300 3800 3300
+Wire Wire Line
+	3600 1400 3600 1900
+Wire Wire Line
+	3600 1900 3800 1900
+$Comp
+L power:+5VD #PWR08
+U 1 1 5ECF8A31
+P 3700 950
+F 0 "#PWR08" H 3700 800 50  0001 C CNN
+F 1 "+5VD" H 3715 1123 50  0000 C CNN
+F 2 "" H 3700 950 50  0001 C CNN
+F 3 "" H 3700 950 50  0001 C CNN
+	1    3700 950 
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6500 1100 6500 1600
+Wire Wire Line
+	6400 1600 6500 1600
+Wire Wire Line
+	3700 1550 3700 950 
+Text Label 4200 1100 1    50   ~ 0
+vel_encoder_1
+Text Label 3700 1900 3    50   ~ 0
+vel_encoder_2
+Text Label 3700 3200 1    50   ~ 0
+Load_Cell_DTA
+Text Label 3700 3300 3    50   ~ 0
+Load_Cell_SCK
+$Comp
+L sensory_stimulator:Dual_Motor_Driver(L298) J1
+U 1 1 5ECB00EE
+P 8500 1650
+F 0 "J1" H 8500 2075 50  0000 C CNN
+F 1 "Dual_Motor_Driver(L298)" H 8500 1984 50  0000 C CNN
+F 2 "" H 8600 1650 50  0001 C CNN
+F 3 "~" H 8600 1650 50  0001 C CNN
+	1    8500 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3450 1400 3600 1400
+Wire Wire Line
+	3500 1250 3500 1750
+Wire Wire Line
+	3450 1250 3500 1250
+Wire Wire Line
+	3450 1100 6500 1100
+Wire Wire Line
+	3450 1550 3700 1550
+$EndSCHEMATC

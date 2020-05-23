@@ -1,0 +1,15 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP Dual_Motor_Driver(L298)
+D ESC for DC motor.
+K connector
+F ~
+$ENDCMP
+#
+$CMP Rotary_Encoder
+D Rotary encoder, dual channel, incremental quadrate outputs
+K rotary switch encoder
+F ~
+$ENDCMP
+#
+#End Doc Library

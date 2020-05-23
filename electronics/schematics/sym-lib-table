@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name arduino)(type Legacy)(uri /Users/Jimfangjie/Desktop/jim_li/computer_science/KiCAD/arduino-kicad-library-master/arduino.lib)(options "")(descr ""))
+  (lib (name sensory_stimulator)(type Legacy)(uri ${KIPRJMOD}/libraries/sensory_stimulator.lib)(options "")(descr ""))
+)
