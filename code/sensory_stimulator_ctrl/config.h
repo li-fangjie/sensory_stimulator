@@ -19,14 +19,14 @@ namespace stimulator{
   const int vel_input_2 = 6;
   const int vel_input_pwm = 4;
 
-  const int tor_encoder_1 = 3;
-  const int tor_encoder_2 = 19;
+  // const int tor_encoder_1 = 3;
+  // const int tor_encoder_2 = 19;
 
   const int vel_encoder_1 = 2;
   const int vel_encoder_2 = 18;
 
-  const int tor_curr_input = A2;
-  const int vel_curr_input = A1;
+  // const int tor_curr_input = A2;
+  // const int vel_curr_input = A1;
 
   const int load_CLK = A4;
   const int load_DAT = A3;
