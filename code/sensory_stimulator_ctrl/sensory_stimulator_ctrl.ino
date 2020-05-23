@@ -99,8 +99,8 @@ void update_values()
 // A function that includes all necessary functions for making updates to pid controls.
 void update_pid()
 {
-  tor_load_s_pid.update(); // Controlling the force exerted.
-  vel_enc_pid.update(); // Controlling the velocity of rotation.
+  tor_load_s_pid.update(); // updates the pid by 1 step
+  vel_enc_pid.update(); // updates the pid by 1 step 
   // tor_curr_pid.update();
   // vel_curr_pid.update();
 }
