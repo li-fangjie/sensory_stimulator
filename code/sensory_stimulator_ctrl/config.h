@@ -31,10 +31,6 @@ namespace stimulator{
   const int load_CLK = A4;
   const int load_DAT = A3;
 
-  // The coefficients for pid, in the order of kP, n_kI, n_kD, n_KF
-  const float tor_load_s_pid_coef[4] = {1,1,1,1};
-  const float vel_enc_pid_coef[4] = {.7,.02,0,0};
-
   /*
   const float tor_curr_pid_coef[4] = {1,1,1,1};
   const float vel_curr_pid_coef[4] = {1,1,1,1};
