@@ -18,5 +18,5 @@ void setup() {
 void loop() {
     digitalWrite(output_pin_1, HIGH);
     digitalWrite(output_pin_2, LOW);
-    analogWrite(output_pin_pwm, 0);
+    analogWrite(output_pin_pwm, 150);
 }
